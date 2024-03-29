@@ -1712,9 +1712,9 @@ mod test {
             0xa9, 0x10, // LDA #$10
             0x85, 0x10, // STA $10
             0x85, 0x11, // STA $11
-            0x6c, 0x10, 0x00, // JMP ($8010)
+            0x6c, 0x10, 0x00, // JMP ($0010)
         ]);
-        assert_eq!(cpu.program_counter, 0x8011);
+        assert_eq!(cpu.program_counter, 0x1011);
     }
 
     #[test]
