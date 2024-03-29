@@ -773,6 +773,7 @@ impl CPU {
 mod test {
     use super::*;
 
+    /* LDA */
     #[test]
     fn test_0xa9_lda_immediate_load_data() {
         let mut cpu = CPU::new();
@@ -796,6 +797,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
+    /* TAX */
     #[test]
     fn test_0xaa_tax_move_a_to_x() {
         let mut cpu = CPU::new();
@@ -819,6 +821,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
+    /* INX */
     #[test]
     fn test_0xe8_inx_increment_x() {
         let mut cpu = CPU::new();
@@ -866,8 +869,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x55);
     }
 
-    // STA
-
+    /* STA */
     #[test]
     fn test_sta_0x85_zero_page() {
         let mut cpu = CPU::new();
@@ -890,23 +892,21 @@ mod test {
         assert_eq!(cpu.mem_read(0x1234), 0x42);
     }
 
-    // BRK
+    /* BRK */
     #[test]
     fn test_brk_0x00() {
         let mut cpu = CPU::new();
         cpu.load_and_run(vec![0x00]);
     }
 
-    // NOP
-
+    /* NOP */
     #[test]
     fn test_nop_0xea() {
         let mut cpu = CPU::new();
         cpu.load_and_run(vec![0xea]);
     }
 
-    // ADC
-
+    /* ADC */
     #[test]
     fn test_adc_0x69_immediate() {
         let mut cpu = CPU::new();
@@ -985,8 +985,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::V));
     }
 
-    // SBC
-
+    /* SBC */
     #[test]
     fn test_sbc_0xe9_immediate() {
         let mut cpu = CPU::new();
@@ -1067,8 +1066,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::V));
     }
 
-    // AND
-
+    /* AND */
     #[test]
     fn test_and_0x29_immediate_zero_flag() {
         let mut cpu = CPU::new();
@@ -1097,8 +1095,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // EOR
-
+    /* EOR */
     #[test]
     fn test_eor_0x49_immediate_zero_flag() {
         let mut cpu = CPU::new();
@@ -1127,8 +1124,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // ORA
-
+    /* ORA */
     #[test]
     fn test_ora_0x09_immediate_zero_flag() {
         let mut cpu = CPU::new();
@@ -1157,8 +1153,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // ASL
-
+    /* ASL */
     #[test]
     fn test_asl_0x0a_accumulator() {
         let mut cpu = CPU::new();
@@ -1186,8 +1181,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // LSR
-
+    /* LSR */
     #[test]
     fn test_lsr_0x4a_accumulator() {
         let mut cpu = CPU::new();
@@ -1217,8 +1211,7 @@ mod test {
         assert!(!cpu.status.is_set(Flags::N));
     }
 
-    // ROL
-
+    /* ROL */
     #[test]
     fn test_rol_0x2a_accumulator() {
         let mut cpu = CPU::new();
@@ -1279,8 +1272,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // ROR
-
+    /* ROR */
     #[test]
     fn test_ror_0x6a_accumulator() {
         let mut cpu = CPU::new();
@@ -1341,8 +1333,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // INC
-
+    /* INC */
     #[test]
     fn test_inc_0xe6_zero_page_zero_flag() {
         let mut cpu = CPU::new();
@@ -1371,8 +1362,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // INX
-
+    /* INX */
     #[test]
     fn test_inx_0xe8_zero_flag() {
         let mut cpu = CPU::new();
@@ -1399,8 +1389,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // INY
-
+    /* INY */
     #[test]
     fn test_iny_0xc8_zero_flag() {
         let mut cpu = CPU::new();
@@ -1427,8 +1416,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // DEC
-
+    /* DEC */
     #[test]
     fn test_dec_0xc6_zero_page_zero_flag() {
         let mut cpu = CPU::new();
@@ -1457,8 +1445,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // DEX
-
+    /* DEX */
     #[test]
     fn test_dex_0xca_zero_flag() {
         let mut cpu = CPU::new();
@@ -1485,8 +1472,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // DEY
-
+    /* DEY */
     #[test]
     fn test_dey_0x88_zero_flag() {
         let mut cpu = CPU::new();
@@ -1513,8 +1499,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // CMP
-
+    /* CMP */
     #[test]
     fn test_cmp_0xc9_immediate_carry_zero_flag() {
         let mut cpu = CPU::new();
@@ -1541,8 +1526,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // CPX
-
+    /* CPX */
     #[test]
     fn test_cpx_0xe0_immediate_carry_zero_flag() {
         let mut cpu = CPU::new();
@@ -1569,8 +1553,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // CPY
-
+    /* CPY */
     #[test]
     fn test_cpy_0xc0_immediate_carry_zero_flag() {
         let mut cpu = CPU::new();
@@ -1597,8 +1580,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // BCC
-
+    /* BCC */
     #[test]
     fn test_bcc_0x90() {
         let mut cpu = CPU::new();
@@ -1611,8 +1593,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x01);
     }
 
-    // BCS
-
+    /* BCS */
     #[test]
     fn test_bcs_0xb0() {
         let mut cpu = CPU::new();
@@ -1626,8 +1607,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x01);
     }
 
-    // BEQ
-
+    /* BEQ */
     #[test]
     fn test_beq_0xf0() {
         let mut cpu = CPU::new();
@@ -1641,8 +1621,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x01);
     }
 
-    // BMI
-
+    /* BMI */
     #[test]
     fn test_bmi_0x30() {
         let mut cpu = CPU::new();
@@ -1656,8 +1635,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x01);
     }
 
-    // BNE
-
+    /* BNE */
     #[test]
     fn test_bne_0xd0() {
         let mut cpu = CPU::new();
@@ -1671,8 +1649,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x02);
     }
 
-    // BPL
-
+    /* BPL */
     #[test]
     fn test_bpl_0x10() {
         let mut cpu = CPU::new();
@@ -1686,8 +1663,7 @@ mod test {
         assert_eq!(cpu.register_a, 0x02);
     }
 
-    // BVC
-
+    /* BVC */
     #[test]
     fn test_bvc_0x50() {
         let mut cpu = CPU::new();
@@ -1703,8 +1679,7 @@ mod test {
         assert_eq!(cpu.program_counter, 0x8000 + 0x07);
     }
 
-    // BVS
-
+    /* BVS */
     #[test]
     fn test_bvs_0x70() {
         let mut cpu = CPU::new();
@@ -1720,8 +1695,7 @@ mod test {
         assert_eq!(cpu.program_counter, 0x8000 + 0x0b);
     }
 
-    // JMP
-
+    /* JMP */
     #[test]
     fn test_jmp_0x4c_absolute() {
         let mut cpu = CPU::new();
@@ -1759,8 +1733,7 @@ mod test {
         assert_eq!(cpu.program_counter, 0x1021);
     }
 
-    // JSR
-
+    /* JSR */
     #[test]
     fn test_jsr_0x20() {
         let mut cpu = CPU::new();
@@ -1774,8 +1747,7 @@ mod test {
         );
     }
 
-    // RTS
-
+    /* RTS */
     #[test]
     fn test_rts_0x60() {
         let mut cpu = CPU::new();
@@ -1788,8 +1760,7 @@ mod test {
         assert_eq!(cpu.program_counter, 0x8006);
     }
 
-    // RTI
-
+    /* RTI */
     #[test]
     fn test_rti_0x40() {
         let mut cpu = CPU::new();
@@ -1813,8 +1784,7 @@ mod test {
         assert_eq!(cpu.program_counter, 0x1012);
     }
 
-    // BIT
-
+    /* BIT */
     #[test]
     fn test_bit_0x24_zero_page() {
         let mut cpu = CPU::new();
@@ -1843,8 +1813,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // SEC
-
+    /* SEC */
     #[test]
     fn test_sec_0x38() {
         let mut cpu = CPU::new();
@@ -1852,8 +1821,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::C));
     }
 
-    // TAX
-
+    /* TAX */
     #[test]
     fn test_tax_0xaa() {
         let mut cpu = CPU::new();
@@ -1866,8 +1834,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // TAY
-
+    /* TAY */
     #[test]
     fn test_tay_0xaa() {
         let mut cpu = CPU::new();
@@ -1880,8 +1847,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // TSX
-
+    /* TSX */
     #[test]
     fn test_tsx_0xba() {
         let mut cpu = CPU::new();
@@ -1895,8 +1861,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // TXA
-
+    /* TXA */
     #[test]
     fn test_txa_0x8a() {
         let mut cpu = CPU::new();
@@ -1909,8 +1874,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // TXS
-
+    /* TXS */
     #[test]
     fn test_txs_0x9a() {
         let mut cpu = CPU::new();
@@ -1921,8 +1885,7 @@ mod test {
         assert_eq!(cpu.stack_pointer, 0x80);
     }
 
-    // TYA
-
+    /* TYA */
     #[test]
     fn test_tya_0x98() {
         let mut cpu = CPU::new();
@@ -1935,8 +1898,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // PHA
-
+    /* PHA */
     #[test]
     fn test_pha_0x48() {
         let mut cpu = CPU::new();
@@ -1948,8 +1910,7 @@ mod test {
         assert_eq!(cpu.stack_pointer, 0xfc);
     }
 
-    // PHP
-
+    /* PHP */
     #[test]
     fn test_php_0x08() {
         let mut cpu = CPU::new();
@@ -1960,8 +1921,7 @@ mod test {
         assert_eq!(cpu.stack_pointer, 0xfc);
     }
 
-    // PLA
-
+    /* PLA */
     #[test]
     fn test_pla_0x68() {
         let mut cpu = CPU::new();
@@ -1977,8 +1937,7 @@ mod test {
         assert!(cpu.status.is_set(Flags::N));
     }
 
-    // PLP
-
+    /* PLP */
     #[test]
     fn test_plp_0x28() {
         let mut cpu = CPU::new();
